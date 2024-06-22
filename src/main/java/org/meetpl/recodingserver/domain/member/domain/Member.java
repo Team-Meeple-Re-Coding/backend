@@ -6,6 +6,8 @@ import lombok.*;
 @Table(name = "member")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE)
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

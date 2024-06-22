@@ -6,6 +6,8 @@ import lombok.*;
 @Table(name = "review_content")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE)
 public class ReviewContent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

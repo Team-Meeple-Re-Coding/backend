@@ -10,6 +10,8 @@ import java.time.LocalDate;
 @Table(name = "reviewee")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE)
 public class Reviewee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

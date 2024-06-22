@@ -9,6 +9,8 @@ import java.time.LocalDate;
 @Table(name = "reviewer")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE)
 public class Reviewer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

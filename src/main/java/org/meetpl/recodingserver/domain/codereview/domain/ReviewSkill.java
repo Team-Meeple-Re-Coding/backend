@@ -7,6 +7,8 @@ import org.meetpl.recodingserver.domain.reviewer.domain.Reviewer;
 @Table(name = "review_skill")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE)
 public class ReviewSkill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

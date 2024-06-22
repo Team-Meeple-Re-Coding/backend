@@ -8,6 +8,8 @@ import org.meetpl.recodingserver.domain.member.domain.Member;
 @Table(name = "skill")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE)
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

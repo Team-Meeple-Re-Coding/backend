@@ -4,7 +4,7 @@ public record SearchReqDto(
         String corporation,
         String job,
         String career,
-        String stack
+        String skill
 
 ) {
 }

@@ -3,7 +3,7 @@ package org.meetpl.recodingserver.api.search.service.dto.res;
 import java.util.List;
 
 public record ReviewerInfoResDto(
-        UserSimpleResDto userSimpleResDto,
+        UserSimpleResDto user,
         String description,
         String job,
         List<String> stacks,

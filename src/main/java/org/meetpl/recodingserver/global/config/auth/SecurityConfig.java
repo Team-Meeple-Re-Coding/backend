@@ -24,7 +24,7 @@ public class SecurityConfig {
     private final JwtProvider jwtProvider;
 
     private static final String[] whiteList = {
-            "/"
+            "/**"
     };
 
     @Bean

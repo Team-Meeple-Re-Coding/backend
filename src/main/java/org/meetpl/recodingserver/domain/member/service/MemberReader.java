@@ -6,6 +6,8 @@ import org.meetpl.recodingserver.domain.member.repository.MemberRepository;
 import org.meetpl.recodingserver.global.error.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import static org.meetpl.recodingserver.global.error.ErrorCode.MEMBER_NOT_FOUND;
 
 @Service
@@ -14,5 +16,8 @@ public class MemberReader {
     private final MemberRepository memberRepository;
     public Member getMemberById(Long memberId){
         return memberRepository.findById(memberId).orElseThrow( () -> new EntityNotFoundException(MEMBER_NOT_FOUND));
+    }
+    public Optional<Member> findByPlatformId(String platformId){
+        return memberRepository.findByPlatformId(platformId);
     }
 }

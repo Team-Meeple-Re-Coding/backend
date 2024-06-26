@@ -27,7 +27,13 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath phone = createString("phone");
 
+    public final EnumPath<Platform> platform = createEnum("platform", Platform.class);
+
+    public final StringPath platformId = createString("platformId");
+
     public final StringPath profile = createString("profile");
+
+    public final StringPath refreshToken = createString("refreshToken");
 
     public final EnumPath<Type> type = createEnum("type", Type.class);
 

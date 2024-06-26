@@ -38,6 +38,8 @@ public class QReviewer extends EntityPathBase<Reviewer> {
 
     public final EnumPath<Job> job = createEnum("job", Job.class);
 
+    public final org.meetpl.recodingserver.domain.member.domain.QMember member;
+
     public final NumberPath<Integer> reviewContentCount = createNumber("reviewContentCount", Integer.class);
 
     public final NumberPath<Integer> reviewCount = createNumber("reviewCount", Integer.class);
@@ -61,6 +63,7 @@ public class QReviewer extends EntityPathBase<Reviewer> {
     public QReviewer(Class<? extends Reviewer> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.codeReview = inits.isInitialized("codeReview") ? new org.meetpl.recodingserver.domain.codereview.domain.QCodeReview(forProperty("codeReview"), inits.get("codeReview")) : null;
+        this.member = inits.isInitialized("member") ? new org.meetpl.recodingserver.domain.member.domain.QMember(forProperty("member")) : null;
     }
 
 }

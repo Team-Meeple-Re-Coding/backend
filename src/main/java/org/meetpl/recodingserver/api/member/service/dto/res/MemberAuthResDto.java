@@ -1,4 +1,4 @@
-package org.meetpl.recodingserver.api.user.service.dto.res;
+package org.meetpl.recodingserver.api.member.service.dto.res;
 
 import org.meetpl.recodingserver.domain.member.domain.Member;
 import org.meetpl.recodingserver.global.config.auth.TokenInfo;

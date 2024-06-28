@@ -1,16 +1,22 @@
 package org.meetpl.recodingserver.domain.reviewer.repository;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.meetpl.recodingserver.api.search.service.dto.req.SearchReqDto;
+import org.meetpl.recodingserver.api.search.dto.req.SearchReqDto;
 import org.meetpl.recodingserver.domain.reviewer.domain.*;
-import org.meetpl.recodingserver.domain.codereview.domain.SkillType;
+import org.meetpl.recodingserver.domain.reviewer.dto.ReviewerDetailDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.meetpl.recodingserver.domain.member.domain.QMember.member;
+import static org.meetpl.recodingserver.domain.reviewer.domain.QReviewer.reviewer;
 
 @Repository
 public class ReviewerRepositoryImpl implements ReviewerRepositoryCustom {
@@ -64,5 +70,34 @@ public class ReviewerRepositoryImpl implements ReviewerRepositoryCustom {
                 .fetchCount();
 
         return new PageImpl<>(results, pageable, total);
+    }
+
+    @Override
+    public Optional<ReviewerDetailDto> findReviewerDetailById(Long reviewerId) {
+        return Optional.ofNullable(queryFactory
+                .select(Projections.constructor(ReviewerDetailDto.class,
+                        reviewer.id,
+                        member.name,
+                        member.profile,
+                        reviewer.corporation,
+                        reviewer.githubLink,
+                        reviewer.intro,
+                        reviewer.codeStyle,
+                        reviewer.careerInfo,
+                        reviewer.careerYear,
+                        reviewer.codeReviews,
+                        reviewer.skills
+                ))
+                .from(reviewer)
+                .leftJoin(reviewer.member, member)
+                .where(
+                        eqReviewId(reviewerId)
+                )
+                .fetchOne()
+        );
+    }
+
+    private BooleanExpression eqReviewId(Long reviewId) {
+        return reviewId != null ? reviewer.id.eq(reviewId) : null;
     }
 }

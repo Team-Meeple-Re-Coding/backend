@@ -2,6 +2,7 @@ package org.meetpl.recodingserver.domain.reviewer.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.meetpl.recodingserver.domain.codereview.domain.CodeReview;
+import org.meetpl.recodingserver.domain.member.domain.Member;
 
 import java.time.LocalDate;
 
@@ -26,4 +27,6 @@ public class Reviewer {
     private Job job;
     @OneToOne
     private CodeReview codeReview;
+    @OneToOne
+    private Member member;
 }

@@ -37,6 +37,7 @@ public enum ErrorCode {
     ENTITY_NOT_FOUND(HttpStatus.NOT_FOUND, "엔티티를 찾을 수 없습니다."),
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "유저를 찾을 수 없습니다."),
     CAREER_NOT_FOUND(HttpStatus.NOT_FOUND, "경력을 찾을 수 없습니다."),
+    REVIEWER_NOT_FOUND(HttpStatus.NOT_FOUND, "코드 리뷰어를 찾을 수 없습니다."),
 
     /**
      * 405 Method Not Allowed

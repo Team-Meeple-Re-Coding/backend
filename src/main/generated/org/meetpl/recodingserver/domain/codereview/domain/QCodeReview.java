@@ -22,11 +22,21 @@ public class QCodeReview extends EntityPathBase<CodeReview> {
 
     public static final QCodeReview codeReview = new QCodeReview("codeReview");
 
+    public final org.meetpl.recodingserver.global.common.QBaseTimeEntity _super = new org.meetpl.recodingserver.global.common.QBaseTimeEntity(this);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createDate = _super.createDate;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
 
     public final StringPath projectInfo = createString("projectInfo");
 
     public final StringPath request = createString("request");
+
+    public final org.meetpl.recodingserver.domain.reviewee.domain.QReviewee reviewee;
 
     public final org.meetpl.recodingserver.domain.reviewer.domain.QReviewer reviewer;
 
@@ -48,6 +58,7 @@ public class QCodeReview extends EntityPathBase<CodeReview> {
 
     public QCodeReview(Class<? extends CodeReview> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.reviewee = inits.isInitialized("reviewee") ? new org.meetpl.recodingserver.domain.reviewee.domain.QReviewee(forProperty("reviewee"), inits.get("reviewee")) : null;
         this.reviewer = inits.isInitialized("reviewer") ? new org.meetpl.recodingserver.domain.reviewer.domain.QReviewer(forProperty("reviewer"), inits.get("reviewer")) : null;
     }
 

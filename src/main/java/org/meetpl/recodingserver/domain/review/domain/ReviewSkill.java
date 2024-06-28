@@ -1,14 +1,15 @@
-package org.meetpl.recodingserver.domain.codereview.domain;
+package org.meetpl.recodingserver.domain.review.domain;
+
 import jakarta.persistence.*;
 import lombok.*;
-import org.meetpl.recodingserver.domain.reviewer.domain.Reviewer;
+import org.meetpl.recodingserver.domain.reviewer.domain.SkillType;
 
-@Entity
-@Table(name = "review_skill")
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PRIVATE)
+@Table(name = "reviewe_skill")
+@Getter
+@Entity
 public class ReviewSkill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +17,6 @@ public class ReviewSkill {
     @Enumerated(EnumType.STRING)
     private SkillType skillType;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reviewer_id")
-    private Reviewer reviewer;
+    @JoinColumn(name = "review_id")
+    private Review review;
 }

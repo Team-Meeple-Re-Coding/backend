@@ -1,4 +1,4 @@
-package org.meetpl.recodingserver.domain.codereview.domain;
+package org.meetpl.recodingserver.domain.reviewer.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,6 @@
 package org.meetpl.recodingserver.domain.reviewer.domain;
 import jakarta.persistence.*;
 import lombok.*;
-import org.meetpl.recodingserver.domain.codereview.domain.SkillType;
-import org.meetpl.recodingserver.domain.member.domain.Member;
 
 @Entity
 @Table(name = "skill")

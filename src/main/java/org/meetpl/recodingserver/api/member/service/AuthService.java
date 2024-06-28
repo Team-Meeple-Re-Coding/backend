@@ -1,8 +1,8 @@
-package org.meetpl.recodingserver.api.user.service;
+package org.meetpl.recodingserver.api.member.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
-import org.meetpl.recodingserver.api.user.service.dto.res.MemberAuthResDto;
+import org.meetpl.recodingserver.api.member.service.dto.res.MemberAuthResDto;
 import org.meetpl.recodingserver.domain.member.domain.Member;
 import org.meetpl.recodingserver.domain.member.domain.Platform;
 import org.meetpl.recodingserver.domain.member.service.MemberModifier;

@@ -26,7 +26,7 @@ public class QSkill extends EntityPathBase<Skill> {
 
     public final QReviewer reviewer;
 
-    public final EnumPath<org.meetpl.recodingserver.domain.codereview.domain.SkillType> skillType = createEnum("skillType", org.meetpl.recodingserver.domain.codereview.domain.SkillType.class);
+    public final EnumPath<SkillType> skillType = createEnum("skillType", SkillType.class);
 
     public QSkill(String variable) {
         this(Skill.class, forVariable(variable), INITS);

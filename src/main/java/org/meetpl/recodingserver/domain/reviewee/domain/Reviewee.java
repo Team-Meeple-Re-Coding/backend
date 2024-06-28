@@ -1,8 +1,10 @@
 package org.meetpl.recodingserver.domain.reviewee.domain;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.meetpl.recodingserver.domain.codereview.domain.CodeReview;
 import org.meetpl.recodingserver.domain.member.domain.Member;
+import org.meetpl.recodingserver.domain.review.domain.Review;
 
 import java.time.LocalDate;
 
@@ -23,6 +25,10 @@ public class Reviewee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "code_review_id")
     private CodeReview codeReview;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_id")
+    private Review review;
 }

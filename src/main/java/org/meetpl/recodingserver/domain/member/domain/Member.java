@@ -23,6 +23,7 @@ public class Member {
     private String phone;
     private Type type;
     private String refreshToken;
+
     public static Member createMember(PlatformUserInfo platformUserInfo, Platform platform) {
         return Member.builder()
                 .platformId(platformUserInfo.getId())
@@ -32,6 +33,7 @@ public class Member {
                 .profile(platformUserInfo.getPicture())
                 .build();
     }
+
     public void updateRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }

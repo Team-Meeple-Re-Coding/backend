@@ -34,6 +34,8 @@ public class QReviewee extends EntityPathBase<Reviewee> {
 
     public final org.meetpl.recodingserver.domain.member.domain.QMember member;
 
+    public final org.meetpl.recodingserver.domain.review.domain.QReview review;
+
     public final DatePath<java.time.LocalDate> startDate = createDate("startDate", java.time.LocalDate.class);
 
     public QReviewee(String variable) {
@@ -56,6 +58,7 @@ public class QReviewee extends EntityPathBase<Reviewee> {
         super(type, metadata, inits);
         this.codeReview = inits.isInitialized("codeReview") ? new org.meetpl.recodingserver.domain.codereview.domain.QCodeReview(forProperty("codeReview"), inits.get("codeReview")) : null;
         this.member = inits.isInitialized("member") ? new org.meetpl.recodingserver.domain.member.domain.QMember(forProperty("member")) : null;
+        this.review = inits.isInitialized("review") ? new org.meetpl.recodingserver.domain.review.domain.QReview(forProperty("review"), inits.get("review")) : null;
     }
 
 }

@@ -22,13 +22,20 @@ public class QReviewer extends EntityPathBase<Reviewer> {
 
     public static final QReviewer reviewer = new QReviewer("reviewer");
 
-    public final org.meetpl.recodingserver.domain.codereview.domain.QCodeReview codeReview;
+    public final org.meetpl.recodingserver.global.common.QBaseTimeEntity _super = new org.meetpl.recodingserver.global.common.QBaseTimeEntity(this);
+
+    public final StringPath careerInfo = createString("careerInfo");
+
+    public final NumberPath<Integer> careerYear = createNumber("careerYear", Integer.class);
+
+    public final ListPath<org.meetpl.recodingserver.domain.codereview.domain.CodeReview, org.meetpl.recodingserver.domain.codereview.domain.QCodeReview> codeReviews = this.<org.meetpl.recodingserver.domain.codereview.domain.CodeReview, org.meetpl.recodingserver.domain.codereview.domain.QCodeReview>createList("codeReviews", org.meetpl.recodingserver.domain.codereview.domain.CodeReview.class, org.meetpl.recodingserver.domain.codereview.domain.QCodeReview.class, PathInits.DIRECT2);
 
     public final StringPath codeStyle = createString("codeStyle");
 
     public final StringPath corporation = createString("corporation");
 
-    public final DatePath<java.time.LocalDate> enterDate = createDate("enterDate", java.time.LocalDate.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createDate = _super.createDate;
 
     public final StringPath githubLink = createString("githubLink");
 
@@ -38,11 +45,12 @@ public class QReviewer extends EntityPathBase<Reviewer> {
 
     public final EnumPath<Job> job = createEnum("job", Job.class);
 
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
+
     public final org.meetpl.recodingserver.domain.member.domain.QMember member;
 
-    public final NumberPath<Integer> reviewContentCount = createNumber("reviewContentCount", Integer.class);
-
-    public final NumberPath<Integer> reviewCount = createNumber("reviewCount", Integer.class);
+    public final ListPath<Skill, QSkill> skills = this.<Skill, QSkill>createList("skills", Skill.class, QSkill.class, PathInits.DIRECT2);
 
     public QReviewer(String variable) {
         this(Reviewer.class, forVariable(variable), INITS);
@@ -62,7 +70,6 @@ public class QReviewer extends EntityPathBase<Reviewer> {
 
     public QReviewer(Class<? extends Reviewer> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.codeReview = inits.isInitialized("codeReview") ? new org.meetpl.recodingserver.domain.codereview.domain.QCodeReview(forProperty("codeReview"), inits.get("codeReview")) : null;
         this.member = inits.isInitialized("member") ? new org.meetpl.recodingserver.domain.member.domain.QMember(forProperty("member")) : null;
     }
 

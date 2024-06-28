@@ -1,4 +1,4 @@
-package org.meetpl.recodingserver.api.search.service.dto.req;
+package org.meetpl.recodingserver.api.search.dto.req;
 
 public record SearchReqDto(
         String corporation,

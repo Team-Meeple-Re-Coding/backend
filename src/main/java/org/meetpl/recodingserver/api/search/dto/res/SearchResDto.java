@@ -1,4 +1,4 @@
-package org.meetpl.recodingserver.api.search.service.dto.res;
+package org.meetpl.recodingserver.api.search.dto.res;
 
 import java.util.List;
 

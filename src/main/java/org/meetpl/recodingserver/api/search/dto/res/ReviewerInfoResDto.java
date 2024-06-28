@@ -1,6 +1,5 @@
-package org.meetpl.recodingserver.api.search.service.dto.res;
+package org.meetpl.recodingserver.api.search.dto.res;
 
-import org.meetpl.recodingserver.domain.member.domain.Member;
 import org.meetpl.recodingserver.domain.reviewer.domain.Reviewer;
 import org.meetpl.recodingserver.domain.reviewer.domain.Skill;
 
@@ -11,17 +10,17 @@ public record ReviewerInfoResDto(
         String intro,
         String job,
         List<String> stacks,
-        Integer reviewCnt,
+        Long codeReviewCount,
         Integer reviewContentCnt
 ) {
-    public static ReviewerInfoResDto of(MemberSimpleResDto member, Reviewer reviewer, List<Skill> skills){
+    public static ReviewerInfoResDto of(MemberSimpleResDto member, Reviewer reviewer, List<Skill> skills, Long reviewCnt) {
         return new ReviewerInfoResDto(
                 member,
                 reviewer.getIntro(),
                 reviewer.getJob().getStringJob(),
                 skills.stream().map(skill -> skill.getSkillType().getStringSkill()).toList(),
-                reviewer.getReviewCount(),
-                reviewer.getReviewContentCount()
+                reviewCnt,
+                reviewer.getCodeReviews().size()
         );
     }
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.meetpl.recodingserver.api.reviewer.dto.req.CreateReviewerReqDto;
 import org.meetpl.recodingserver.api.reviewer.dto.req.UpdateReviewerReqDto;
 import org.meetpl.recodingserver.api.reviewer.dto.res.ReviewerDetailResDto;
+import org.meetpl.recodingserver.api.reviewer.dto.res.ReviewerResDto;
 import org.meetpl.recodingserver.api.reviewer.mapper.ReviewerMapper;
 import org.meetpl.recodingserver.domain.codereview.domain.CodeReview;
 import org.meetpl.recodingserver.domain.member.domain.Member;
@@ -48,6 +49,11 @@ public class ReviewerService {
         Reviewer reviewer = reviewerAppender.createReviewer(createReviewerReqDto.toReviewer(skillTypes, member));
         List<Skill> skills = skillTypes.stream().map(skillType -> Skill.createSkill(skillType,reviewer)).toList();
         skillAppender.saveSkill(skills);
+    }
+    public ReviewerResDto getReviewer(Long memberId){
+        Member member = memberReader.getMemberById(memberId);
+        Reviewer reviewer = reviewerReader.getReviewerByMemberId(memberId);
+        return ReviewerResDto.of(member, reviewer);
     }
 
     public void updateReviewer(Long memberId, UpdateReviewerReqDto updateReviewerReqDto) {

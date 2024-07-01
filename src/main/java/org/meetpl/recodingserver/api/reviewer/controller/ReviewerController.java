@@ -2,6 +2,7 @@ package org.meetpl.recodingserver.api.reviewer.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.meetpl.recodingserver.api.reviewer.dto.req.CreateReviewerReqDto;
+import org.meetpl.recodingserver.api.reviewer.dto.req.UpdateReviewerReqDto;
 import org.meetpl.recodingserver.api.reviewer.dto.res.ReviewerDetailResDto;
 import org.meetpl.recodingserver.api.reviewer.service.ReviewerService;
 import org.meetpl.recodingserver.global.common.SuccessResponse;
@@ -23,6 +24,11 @@ public class ReviewerController {
     @PostMapping
     public ResponseEntity<SuccessResponse<?>> createReviewer(@UserId Long memberId, @RequestBody final CreateReviewerReqDto createReviewerReqDto) {
         reviewerService.createReviewer(memberId, createReviewerReqDto);
+        return SuccessResponse.ok(null);
+    }
+    @PatchMapping
+    public ResponseEntity<SuccessResponse<?>> updateReviewer(@UserId Long memberId, @RequestBody final UpdateReviewerReqDto updateReviewerReqDto) {
+        reviewerService.updateReviewer(memberId, updateReviewerReqDto);
         return SuccessResponse.ok(null);
     }
 }

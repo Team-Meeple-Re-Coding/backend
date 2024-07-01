@@ -14,7 +14,8 @@ public record CreateReviewerReqDto(
         List<String> skills,
         String careerInfo
 ) {
-    public Reviewer toReviewer(List<Skill> skills,Member member){
+    public Reviewer toReviewer(List<SkillType> skillTypes,Member member){
+        List<Skill> skills = skillTypes.stream().map(Skill::from).toList();
         return Reviewer.of(
                 null,
                 corporation,

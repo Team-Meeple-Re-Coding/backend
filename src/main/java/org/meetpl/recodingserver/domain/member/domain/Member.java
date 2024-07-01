@@ -21,6 +21,8 @@ public class Member {
     private String profile;
     private String email;
     private String phone;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
     private Type type;
     private String refreshToken;
 

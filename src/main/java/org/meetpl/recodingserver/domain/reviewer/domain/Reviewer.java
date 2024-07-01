@@ -27,10 +27,10 @@ public class Reviewer extends BaseTimeEntity {
     private Integer careerYear;
     @Enumerated(EnumType.STRING)
     private Job job;
-    @OneToMany(mappedBy = "code_review")
+    @OneToMany(mappedBy = "reviewer")
     @Builder.Default
     private List<CodeReview> codeReviews = new ArrayList<>();
-    @OneToMany(mappedBy = "skill")
+    @OneToMany(mappedBy = "reviewer")
     @Builder.Default
     private List<Skill> skills = new ArrayList<>();
     @OneToOne

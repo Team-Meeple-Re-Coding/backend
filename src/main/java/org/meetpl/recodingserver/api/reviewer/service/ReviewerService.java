@@ -7,11 +7,13 @@ import org.meetpl.recodingserver.api.reviewer.mapper.ReviewerMapper;
 import org.meetpl.recodingserver.domain.codereview.domain.CodeReview;
 import org.meetpl.recodingserver.domain.member.domain.Member;
 import org.meetpl.recodingserver.domain.member.service.MemberReader;
+import org.meetpl.recodingserver.domain.reviewer.domain.Reviewer;
 import org.meetpl.recodingserver.domain.reviewer.domain.Skill;
 import org.meetpl.recodingserver.domain.reviewer.domain.SkillType;
 import org.meetpl.recodingserver.domain.reviewer.dto.ReviewerDetailDto;
 import org.meetpl.recodingserver.domain.reviewer.service.ReviewerAppender;
 import org.meetpl.recodingserver.domain.reviewer.service.ReviewerReader;
+import org.meetpl.recodingserver.domain.reviewer.service.SkillModifier;
 import org.meetpl.recodingserver.domain.reviewer.service.SkillReader;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,7 @@ public class ReviewerService {
     private final ReviewerAppender reviewerAppender;
     private final MemberReader memberReader;
     private final SkillReader skillReader;
+    private final SkillModifier skillModifier;
 
     public ReviewerDetailResDto getReviewerDetail(Long reviewerId) {
         ReviewerDetailDto reviewerDetailDto = reviewerReader.findReviewerDetailById(reviewerId);
@@ -41,7 +44,8 @@ public class ReviewerService {
         List<Skill> skills = createReviewerReqDto.skills().stream().map(
                 skill -> skillReader.getSkillBySkillType(SkillType.getEnumSkillTypeFromStringSkillType(skill))
         ).toList();
-        reviewerAppender.createReviewer(createReviewerReqDto.toReviewer(skills, member));
+        Reviewer reviewer = reviewerAppender.createReviewer(createReviewerReqDto.toReviewer(skills, member));
+        skillModifier.addReviewer(skills, reviewer);
     }
 
     private List<SkillType> convertSkillToSkillTypes(List<Skill> skills) {

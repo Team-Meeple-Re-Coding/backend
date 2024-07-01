@@ -17,4 +17,8 @@ public class Skill {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reviewer_id")
     private Reviewer reviewer;
+
+    public void addReviewer(Reviewer reviewer){
+        this.reviewer = reviewer;
+    }
 }

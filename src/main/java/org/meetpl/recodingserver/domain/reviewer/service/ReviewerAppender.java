@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ReviewerAppender {
     private final ReviewerRepository reviewerRepository;
     @Transactional
-    public void createReviewer(Reviewer reviewer){
-        reviewerRepository.save(reviewer);
+    public Reviewer createReviewer(Reviewer reviewer){
+        return reviewerRepository.save(reviewer);
     }
 }

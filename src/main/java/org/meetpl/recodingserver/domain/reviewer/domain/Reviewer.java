@@ -35,4 +35,20 @@ public class Reviewer extends BaseTimeEntity {
     private List<Skill> skills = new ArrayList<>();
     @OneToOne
     private Member member;
+    public static Reviewer of(Long id, String corporation, String githubLink, String intro, String codeStyle, String careerInfo
+    , Integer careerYear, Job job, List<CodeReview> codeReviews, List<Skill> skills, Member member){
+        return Reviewer.builder()
+                .id(id)
+                .corporation(corporation)
+                .githubLink(githubLink)
+                .intro(intro)
+                .codeStyle(codeStyle)
+                .careerInfo(careerInfo)
+                .careerYear(careerYear)
+                .job(job)
+                .codeReviews(codeReviews)
+                .skills(skills)
+                .member(member)
+                .build();
+    }
 }

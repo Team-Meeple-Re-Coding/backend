@@ -14,6 +14,7 @@ public enum ErrorCode {
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
     INVALID_ENUM_CODE(HttpStatus.BAD_REQUEST, "잘못된 Enum class code 입니다."),
     INVALID_PLATFORM_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 플랫폼입니다"),
+    INVALID_SKILL_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 스킬입니다"),
     /**
      * 401 Unauthorized
      */

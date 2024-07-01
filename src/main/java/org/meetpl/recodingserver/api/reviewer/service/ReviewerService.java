@@ -39,7 +39,7 @@ public class ReviewerService {
     public void createReviewer(Long memberId, CreateReviewerReqDto createReviewerReqDto){
         Member member = memberReader.getMemberById(memberId);
         List<Skill> skills = createReviewerReqDto.skills().stream().map(
-                skill -> skillReader.getSkillsBySkillType()
+                skill -> skillReader.getSkillBySkillType(SkillType.getEnumSkillTypeFromStringSkillType(skill))
         ).toList();
         reviewerAppender.createReviewer(createReviewerReqDto.toReviewer(skills, member));
     }

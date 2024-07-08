@@ -17,4 +17,17 @@ public class Skill {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reviewer_id")
     private Reviewer reviewer;
+
+    public static Skill createSkill(SkillType skillType, Reviewer reviewer){
+        return Skill.builder()
+                .skillType(skillType)
+                .reviewer(reviewer)
+                .build();
+    }
+    public static Skill from(SkillType skillType){
+        return Skill.builder()
+                .skillType(skillType)
+                .reviewer(null)
+                .build();
+    }
 }

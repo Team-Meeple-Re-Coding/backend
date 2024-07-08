@@ -21,6 +21,8 @@ public class Member {
     private String profile;
     private String email;
     private String phone;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
     private Type type;
     private String refreshToken;
 
@@ -36,5 +38,9 @@ public class Member {
 
     public void updateRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
+    }
+    public Member updateName(String name) {
+        this.name = name;
+        return this;
     }
 }

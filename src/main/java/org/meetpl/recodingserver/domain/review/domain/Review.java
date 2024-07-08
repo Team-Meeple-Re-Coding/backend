@@ -20,7 +20,7 @@ public class Review extends BaseTimeEntity {
     private Long id;
     private Integer rating;
     private String contents;
-    @OneToMany(mappedBy = "review_skill")
+    @OneToMany(mappedBy = "review")
     @Builder.Default
     private List<ReviewSkill> skills = new ArrayList<>();
     @OneToOne(fetch = FetchType.LAZY)

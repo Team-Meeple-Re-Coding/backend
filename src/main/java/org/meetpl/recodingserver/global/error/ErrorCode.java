@@ -14,6 +14,9 @@ public enum ErrorCode {
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
     INVALID_ENUM_CODE(HttpStatus.BAD_REQUEST, "잘못된 Enum class code 입니다."),
     INVALID_PLATFORM_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 플랫폼입니다"),
+    INVALID_SKILL_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 스킬입니다"),
+    INVALID_REVIEW_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 리뷰 태그입니다"),
+    INVALID_JOB_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 직무입니다"),
     /**
      * 401 Unauthorized
      */
@@ -38,6 +41,7 @@ public enum ErrorCode {
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "유저를 찾을 수 없습니다."),
     CAREER_NOT_FOUND(HttpStatus.NOT_FOUND, "경력을 찾을 수 없습니다."),
     REVIEWER_NOT_FOUND(HttpStatus.NOT_FOUND, "코드 리뷰어를 찾을 수 없습니다."),
+    SKILL_NOT_FOUND(HttpStatus.NOT_FOUND, "스택을 찾을 수 없습니다."),
 
     /**
      * 405 Method Not Allowed

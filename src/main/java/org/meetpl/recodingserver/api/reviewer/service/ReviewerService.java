@@ -1,13 +1,20 @@
 package org.meetpl.recodingserver.api.reviewer.service;
 
 import lombok.RequiredArgsConstructor;
+import org.meetpl.recodingserver.api.reviewer.dto.req.CreateReviewerReqDto;
 import org.meetpl.recodingserver.api.reviewer.dto.res.ReviewerDetailResDto;
 import org.meetpl.recodingserver.api.reviewer.mapper.ReviewerMapper;
 import org.meetpl.recodingserver.domain.codereview.domain.CodeReview;
+import org.meetpl.recodingserver.domain.member.domain.Member;
+import org.meetpl.recodingserver.domain.member.service.MemberReader;
+import org.meetpl.recodingserver.domain.reviewer.domain.Reviewer;
 import org.meetpl.recodingserver.domain.reviewer.domain.Skill;
 import org.meetpl.recodingserver.domain.reviewer.domain.SkillType;
 import org.meetpl.recodingserver.domain.reviewer.dto.ReviewerDetailDto;
+import org.meetpl.recodingserver.domain.reviewer.service.ReviewerAppender;
 import org.meetpl.recodingserver.domain.reviewer.service.ReviewerReader;
+import org.meetpl.recodingserver.domain.reviewer.service.SkillModifier;
+import org.meetpl.recodingserver.domain.reviewer.service.SkillReader;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,12 +27,25 @@ import java.util.stream.Collectors;
 public class ReviewerService {
     private final ReviewerReader reviewerReader;
     private final ReviewerMapper reviewerMapper;
+    private final ReviewerAppender reviewerAppender;
+    private final MemberReader memberReader;
+    private final SkillReader skillReader;
+    private final SkillModifier skillModifier;
 
     public ReviewerDetailResDto getReviewerDetail(Long reviewerId) {
         ReviewerDetailDto reviewerDetailDto = reviewerReader.findReviewerDetailById(reviewerId);
         List<SkillType> skills = convertSkillToSkillTypes(reviewerDetailDto.skills());
         Double reviewAvg = calculateReviewAvg(reviewerDetailDto.codeReviews());
         return reviewerMapper.toReviewerDetailResDto(reviewerDetailDto, skills, reviewAvg);
+    }
+
+    public void createReviewer(Long memberId, CreateReviewerReqDto createReviewerReqDto){
+        Member member = memberReader.getMemberById(memberId);
+        List<Skill> skills = createReviewerReqDto.skills().stream().map(
+                skill -> skillReader.getSkillBySkillType(SkillType.getEnumSkillTypeFromStringSkillType(skill))
+        ).toList();
+        Reviewer reviewer = reviewerAppender.createReviewer(createReviewerReqDto.toReviewer(skills, member));
+        skillModifier.addReviewer(skills, reviewer);
     }
 
     private List<SkillType> convertSkillToSkillTypes(List<Skill> skills) {

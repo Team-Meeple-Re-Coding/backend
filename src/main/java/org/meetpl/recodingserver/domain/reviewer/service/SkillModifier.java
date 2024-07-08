@@ -5,15 +5,25 @@ import org.meetpl.recodingserver.domain.reviewer.domain.Reviewer;
 import org.meetpl.recodingserver.domain.reviewer.domain.Skill;
 import org.meetpl.recodingserver.domain.reviewer.repository.SkillRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class SkillModifier {
-    public void addReviewer(List<Skill> skills, Reviewer reviewer){
-        for(Skill skill : skills){
-            skill.addReviewer(reviewer);
+    private final SkillRepository skillRepository;
+
+    @Transactional
+    public void removeSkills(List<Skill> skillsToRemove) {
+        if (skillsToRemove == null || skillsToRemove.isEmpty()) {
+            return;
         }
+
+        List<Long> skillIdsToRemove = skillsToRemove.stream()
+                .map(Skill::getId)
+                .toList();
+
+        skillRepository.deleteAllById(skillIdsToRemove);
     }
 }

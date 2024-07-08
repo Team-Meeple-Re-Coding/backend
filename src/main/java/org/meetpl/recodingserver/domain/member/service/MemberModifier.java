@@ -12,4 +12,7 @@ public class MemberModifier {
     public Member save(Member member){
         return memberRepository.save(member);
     }
+    public void updateName(Member member, String name){
+        member.updateName(name);
+    }
 }

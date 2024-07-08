@@ -16,6 +16,7 @@ public enum ErrorCode {
     INVALID_PLATFORM_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 플랫폼입니다"),
     INVALID_SKILL_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 스킬입니다"),
     INVALID_REVIEW_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 리뷰 태그입니다"),
+    INVALID_JOB_TYPE(HttpStatus.BAD_REQUEST, "유효하지 않은 직무입니다"),
     /**
      * 401 Unauthorized
      */

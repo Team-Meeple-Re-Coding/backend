@@ -13,7 +13,8 @@ import static org.meetpl.recodingserver.global.error.ErrorCode.INVALID_SKILL_TYP
 @RequiredArgsConstructor
 @Getter
 public enum SkillType {
-    JAVA("자바");
+    JAVA("자바"),
+    REACT("리액트");;
     private final String stringSkill;
 
     public static SkillType getEnumSkillTypeFromStringSkillType(String stringSkillType) {

@@ -24,7 +24,7 @@ public class SecurityConfig {
     private final JwtProvider jwtProvider;
 
     private static final String[] whiteList = {
-            "/api/auth/**","/api/windyflo/**","/api/test/"
+            "/api/auth/**","/api/windyflo/**","/test/**"
     };
 
     @Bean

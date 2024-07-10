@@ -35,8 +35,6 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath refreshToken = createString("refreshToken");
 
-    public final EnumPath<Type> type = createEnum("type", Type.class);
-
     public QMember(String variable) {
         super(Member.class, forVariable(variable));
     }

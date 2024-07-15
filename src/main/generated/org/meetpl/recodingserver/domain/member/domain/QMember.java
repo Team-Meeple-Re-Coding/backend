@@ -17,7 +17,7 @@ public class QMember extends EntityPathBase<Member> {
 
     private static final long serialVersionUID = 79348589L;
 
-    public static final QMember member = new QMember("member1");
+    public static final QMember member = new QMember("member");
 
     public final StringPath email = createString("email");
 

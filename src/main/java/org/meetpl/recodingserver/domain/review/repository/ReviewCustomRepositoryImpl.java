@@ -60,6 +60,7 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
     public Long findReviewCountByReviewerId(Long reviewerId) {
         return queryFactory
                 .select(review.id.countDistinct())
+                .from(review)
                 .leftJoin(review.reviewee, reviewee)
                 .leftJoin(reviewee.codeReview, codeReview)
                 .leftJoin(codeReview.reviewer, reviewer)

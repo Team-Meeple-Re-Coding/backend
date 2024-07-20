@@ -25,4 +25,9 @@ public class WindyfloController {
         AiReviewResDto aiReviewResDto = windyfloService.postAiCodeReview(aiReviewReqDto);
         return SuccessResponse.ok(aiReviewResDto);
     }
+    @PostMapping("/git/codeReview")
+    ResponseEntity<SuccessResponse<?>> aiCodeReviewGit(@RequestBody AiReviewReqDto aiReviewReqDto) throws JsonProcessingException {
+        AiReviewResDto aiReviewResDto = windyfloService.postAiCodeReviewGit(aiReviewReqDto);
+        return SuccessResponse.ok(aiReviewResDto);
+    }
 }

@@ -17,6 +17,10 @@ public class WindyfloService{
     public AiReviewResDto postAiCodeReview(AiReviewReqDto aiReviewReqDto) throws JsonProcessingException {
         return extractReviewRes(windyfloClient.aiCodeReview(aiReviewReqDto));
     }
+    public AiReviewResDto postAiCodeReviewGit(AiReviewReqDto aiReviewReqDto) throws JsonProcessingException {
+        return extractReviewRes(windyfloClient.aiCodeReviewGit(aiReviewReqDto));
+    }
+
 
     public AiReviewResDto extractReviewRes(Object input) throws JsonProcessingException {
         JsonNode rootNode = objectMapper.readTree(input.toString());

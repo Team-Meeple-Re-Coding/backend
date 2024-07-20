@@ -18,7 +18,8 @@ import reactor.core.publisher.Mono;
 @Service
 @RequiredArgsConstructor
 public class WindyfloClient {
-    private final String AI_CODEREVIEW_URL = "https://windyflo.com/api/v1/prediction/83466e2d-3e29-4a67-aca3-01fd168400f2";
+    private final String AI_CODEREVIEW_URL = "https://windyflo.com/api/v1/prediction/7142ecd8-8fe9-4c68-8498-1b4b6ec4b6ee";
+    private final String AI_GIT_CODEREVIEW_URL = "https://windyflo.com/api/v1/prediction/291e1f83-cd15-4e35-9dec-d8f80c4b2df2";
     private final WebClient webClient;
     private final ObjectMapper objectMapper;
 
@@ -30,6 +31,19 @@ public class WindyfloClient {
 
         return webClient.post()
                 .uri(AI_CODEREVIEW_URL)
+                .bodyValue(questionRequest)
+                .retrieve()
+                .bodyToMono(JsonNode.class)
+                .block();
+    }
+    public JsonNode aiCodeReviewGit(AiReviewReqDto aiReviewReqDto) {
+        ObjectNode requestBody = objectMapper.createObjectNode();
+        requestBody.put("code", aiReviewReqDto.code());
+        requestBody.put("style", aiReviewReqDto.style());
+        QuestionRequest questionRequest = new QuestionRequest(requestBody.toString());
+
+        return webClient.post()
+                .uri(AI_GIT_CODEREVIEW_URL)
                 .bodyValue(questionRequest)
                 .retrieve()
                 .bodyToMono(JsonNode.class)

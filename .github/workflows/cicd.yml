@@ -45,15 +45,12 @@ jobs:
         run: |
           ./gradlew build -x test
 
-      - name: Check if deploy.sh changed
-        id: deploy_sh_changed
+      - name: Check changed files
+        id: changed-files
         run: |
-          git diff --quiet HEAD^ HEAD -- ./scripts/deploy.sh || echo "::set-output name=changed::true"
-
-      - name: Check if docker-compose.yml changed
-        id: docker_compose_changed
-        run: |
-          git diff --quiet HEAD^ HEAD -- ./docker-compose.yml || echo "::set-output name=changed::true"
+          echo "DEPLOY_SH_CHANGED=$(git diff --name-only HEAD^ HEAD | grep -q 'scripts/deploy.sh' && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "DOCKER_COMPOSE_CHANGED=$(git diff --name-only HEAD^ HEAD | grep -q 'docker-compose.yml' && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+      
 
       - name: 🍀 docker image build 후 docker hub에 push
         run: |

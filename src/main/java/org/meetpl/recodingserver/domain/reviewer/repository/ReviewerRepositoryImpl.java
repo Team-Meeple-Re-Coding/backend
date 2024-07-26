@@ -16,7 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.meetpl.recodingserver.domain.member.domain.QMember.member;
+import static org.meetpl.recodingserver.domain.reviewer.domain.QCareer.career;
 import static org.meetpl.recodingserver.domain.reviewer.domain.QReviewer.reviewer;
+import static org.meetpl.recodingserver.domain.reviewer.domain.QSkill.skill;
 
 @Repository
 public class ReviewerRepositoryImpl implements ReviewerRepositoryCustom {
@@ -29,10 +31,6 @@ public class ReviewerRepositoryImpl implements ReviewerRepositoryCustom {
 
     @Override
     public Page<Reviewer> findReviewerBySearchReqDto(Pageable pageable, SearchReqDto searchReqDto) {
-        QReviewer reviewer = QReviewer.reviewer;
-        QCareer career = QCareer.career;
-        QSkill skill = QSkill.skill;
-
         BooleanBuilder predicate = new BooleanBuilder();
 
         if (searchReqDto.corporation() != null && !searchReqDto.corporation().isEmpty()) {

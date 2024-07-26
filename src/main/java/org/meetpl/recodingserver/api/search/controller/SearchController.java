@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/search")
 @RequiredArgsConstructor
 public class SearchController {
-    private SearchService searchService;
+    private final SearchService searchService;
     @PostMapping
     public ResponseEntity<SuccessResponse<?>> searchReviewer(@RequestParam(value = "page", defaultValue = "0") int page, @RequestBody SearchReqDto searchReqDto){
         SearchResDto searchResDto = searchService.searchReviewers(PageRequest.of(page, 9) ,searchReqDto);

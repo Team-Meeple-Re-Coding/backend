@@ -21,9 +21,9 @@ public class Member {
     private String profile;
     private String email;
     private String phone;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
-    private Type type;
+//    @Enumerated(EnumType.STRING)
+//    @Column(nullable = true)
+//    private Type type;
     private String refreshToken;
 
     public static Member createMember(PlatformUserInfo platformUserInfo, Platform platform) {

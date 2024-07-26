@@ -3,6 +3,7 @@ package org.meetpl.recodingserver.api.windyflo.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.meetpl.recodingserver.api.windyflo.service.WindyfloService;
+import org.meetpl.recodingserver.api.windyflo.service.dto.req.AiReviewGitReqDto;
 import org.meetpl.recodingserver.api.windyflo.service.dto.req.AiReviewReqDto;
 import org.meetpl.recodingserver.api.windyflo.service.dto.res.AiReviewResDto;
 import org.meetpl.recodingserver.global.common.SuccessResponse;
@@ -26,7 +27,7 @@ public class WindyfloController {
         return SuccessResponse.ok(aiReviewResDto);
     }
     @PostMapping("/git/codeReview")
-    ResponseEntity<SuccessResponse<?>> aiCodeReviewGit(@RequestBody AiReviewReqDto aiReviewReqDto) throws JsonProcessingException {
+    ResponseEntity<SuccessResponse<?>> aiCodeReviewGit(@RequestBody AiReviewGitReqDto aiReviewReqDto) throws JsonProcessingException {
         AiReviewResDto aiReviewResDto = windyfloService.postAiCodeReviewGit(aiReviewReqDto);
         return SuccessResponse.ok(aiReviewResDto);
     }

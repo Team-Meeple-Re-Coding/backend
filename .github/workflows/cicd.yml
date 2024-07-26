@@ -45,33 +45,33 @@ jobs:
         run: |
           ./gradlew build -x test
 
-      - name: Check changed files
-        id: changed-files
-        run: |
-          # 모든 원격 브랜치 정보를 가져옵니다
-          git fetch --all
-
-          # base_ref가 존재하는 경우 (즉, PR인 경우) 해당 브랜치를, 아니면 현재 브랜치를 사용합니다
-          BASE_BRANCH="${{ github.base_ref || github.ref_name }}"
-
-          # 브랜치가 분기된 지점을 찾습니다
-          MERGE_BASE=$(git merge-base origin/$BASE_BRANCH HEAD)
-
-          # 분기 지점부터 현재 HEAD까지의 변경사항을 확인합니다
-          DEPLOY_SH_CHANGED=$(git diff --name-only $MERGE_BASE HEAD -- scripts/deploy.sh | wc -l)
-          DOCKER_COMPOSE_CHANGED=$(git diff --name-only $MERGE_BASE HEAD -- docker-compose.yml | wc -l)
-
-          if [ $DEPLOY_SH_CHANGED -gt 0 ]; then
-            echo "DEPLOY_SH_CHANGED=true" >> $GITHUB_OUTPUT
-          else
-            echo "DEPLOY_SH_CHANGED=false" >> $GITHUB_OUTPUT
-          fi
-
-          if [ $DOCKER_COMPOSE_CHANGED -gt 0 ]; then
-            echo "DOCKER_COMPOSE_CHANGED=true" >> $GITHUB_OUTPUT
-          else
-            echo "DOCKER_COMPOSE_CHANGED=false" >> $GITHUB_OUTPUT
-          fi
+#      - name: Check changed files
+#        id: changed-files
+#        run: |
+#          # 모든 원격 브랜치 정보를 가져옵니다
+#          git fetch --all
+#
+#          # base_ref가 존재하는 경우 (즉, PR인 경우) 해당 브랜치를, 아니면 현재 브랜치를 사용합니다
+#          BASE_BRANCH="${{ github.base_ref || github.ref_name }}"
+#
+#          # 브랜치가 분기된 지점을 찾습니다
+#          MERGE_BASE=$(git merge-base origin/$BASE_BRANCH HEAD)
+#
+#          # 분기 지점부터 현재 HEAD까지의 변경사항을 확인합니다
+#          DEPLOY_SH_CHANGED=$(git diff --name-only $MERGE_BASE HEAD -- scripts/deploy.sh | wc -l)
+#          DOCKER_COMPOSE_CHANGED=$(git diff --name-only $MERGE_BASE HEAD -- docker-compose.yml | wc -l)
+#
+#          if [ $DEPLOY_SH_CHANGED -gt 0 ]; then
+#            echo "DEPLOY_SH_CHANGED=true" >> $GITHUB_OUTPUT
+#          else
+#            echo "DEPLOY_SH_CHANGED=false" >> $GITHUB_OUTPUT
+#          fi
+#
+#          if [ $DOCKER_COMPOSE_CHANGED -gt 0 ]; then
+#            echo "DOCKER_COMPOSE_CHANGED=true" >> $GITHUB_OUTPUT
+#          else
+#            echo "DOCKER_COMPOSE_CHANGED=false" >> $GITHUB_OUTPUT
+#          fi
       
 
       - name: 🍀 docker image build 후 docker hub에 push
